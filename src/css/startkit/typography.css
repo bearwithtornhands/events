@@ -1,0 +1,185 @@
+:root {
+	--secondaryFontStyle: {
+		font-size: 12px;
+		line-height: 24px;
+	}
+
+	--mediumFontStyle: {
+		font-size: 16px;
+		line-height: 22px;
+	}
+
+	--highFontStyle: {
+		font-size: 20px;
+		line-height: 34px;
+	}
+}
+
+html {
+	font: var(--normal) normal 16px/28px var(--defaultFont);
+	color: var(--primaryColor);
+	-webkit-font-smoothing: antialiased;
+}
+
+:--heading,
+p,
+ul,
+ol,
+figure,
+blockquote,
+audio,
+form,
+hr {
+	& {
+		max-width: 600px;
+	}
+
+	&:first-child {
+		margin-top: 0;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+h1 {
+	margin: 48px 0 32px;
+
+	font-size: 2.4em;
+	line-height: 1.1em;
+	font-weight: var(--bold);
+}
+
+h2 {
+	margin: 32px 0 24px;
+
+	font-size: 2.2em;
+	line-height: 1.1em;
+	font-weight: var(--bold);
+}
+
+h3 {
+	margin: 32px 0 24px;
+
+	font-size: 2em;
+	line-height: 1.1em;
+	font-weight: var(--bold);
+}
+
+h4 {
+	margin: 32px 0 16px;
+
+	font-size: 1.8em;
+	line-height: 1.1em;
+	font-weight: var(--bold);
+}
+
+h5 {
+	margin: 32px 0 16px;
+
+	font-size: 1.6em;
+	line-height: 1.1em;
+	font-weight: var(--bold);
+}
+
+h6 {
+	margin: 32px 0 16px;
+
+	font-size: 1.4em;
+	line-height: 1.1em;
+	font-weight: var(--bold);
+}
+
+:--heading {
+	span {
+		color: var(--additionalColor);
+	}
+}
+
+p {
+	& {
+		margin: 16px 0;
+	}
+
+	span {
+		color: var(--additionalColor);
+	}
+
+	b {
+		font-weight: var(--medium);
+	}
+
+	& + ul,
+	& + ol {
+		margin-top: -12px;
+	}
+}
+
+ul,
+ol {
+	@util reset-list;
+	margin: 16px 0;
+}
+
+ul {
+	li {
+		margin: 0;
+
+		position: relative;
+		padding-left: 14px;
+
+		&:before {
+			content: '';
+
+			@util position(absolute, 14px null null 0);
+
+			display: block;
+			@util size(7px, 1px);
+			background-color: var(--accentColor);
+		}
+	}
+}
+
+ol {
+	counter-reset: counterOfNumberedList;
+
+	li {
+		margin: 0;
+
+		position: relative;
+		padding-left: 14px;
+		counter-increment: counterOfNumberedList;
+
+		&:before {
+			@util position(absolute, 0 auto auto 0);
+
+			content: counter(counterOfNumberedList);
+			color: var(--accentColor);
+		}
+	}
+}
+
+:--inline {
+	border-bottom: 1px solid var(--accentColor);
+
+	color: var(--accentColor);
+	text-decoration: none;
+
+	transition: color var(--defaultTransitionDuration),
+		border-color var(--defaultTransitionDuration),
+		background-color var(--defaultTransitionDuration);
+
+	&:hover {
+		@media (--hover) {
+			border-color: transparent;
+			color: var(--accentColor);
+
+			transition: none;
+		}
+	}
+}
+
+hr {
+	@util hr(var(--additionalColor), 24px);
+}
